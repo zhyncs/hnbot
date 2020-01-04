@@ -1,0 +1,19 @@
+name: 'Hacker News Bot'
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v1
+      - name: 'Push Hacker News'
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        run: |
+          sudo apt install jq -y
+          bash ./hn.sh
