@@ -4,7 +4,7 @@ cat > top<<-EOF
 $(curl -s https://hacker-news.firebaseio.com/v0/topstories.json | sed "s/^\[//" | sed "s/.\]//")
 EOF
 
-for ((i = 1; i <= 20; ++i)); do
+for ((i = 1; i <= 7; ++i)); do
   id=$(cat top | cut -d ',' -f${i})
   url="https://hacker-news.firebaseio.com/v0/item/"${id}".json"
   exist=$(curl -s ${url} | grep "url")
